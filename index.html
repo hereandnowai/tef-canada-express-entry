@@ -258,33 +258,10 @@
             right: 40px;
             display: flex;
             gap: 10px;
-            z-index: 100;
+            z-index: 200;
             background: rgba(255,255,255,0.8);
             padding: 5px;
             border-radius: 50px;
-        }
-
-        /* Hosted pages (GitHub Pages / Cloudflare) may inject or override CSS;
-           add a high-specificity override to ensure controls remain visible */
-        .controls, .controls * {
-            display: initial !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-            pointer-events: auto !important;
-        }
-
-        .controls {
-            display: flex !important;
-            z-index: 9999 !important;
-        }
-
-        .controls button {
-            background: var(--accent-color) !important;
-            color: #fff !important;
-            border: none !important;
-            padding: 10px 18px !important;
-            border-radius: 18px !important;
-            box-shadow: 0 2px 8px rgba(255,0,0,0.3) !important;
         }
 
         button {
@@ -317,6 +294,7 @@
             font-size: 0.9rem;
             color: #666;
             font-weight: bold;
+            z-index: 200;
         }
 
         /* Specific Visuals */
@@ -482,5 +460,568 @@
                     </tbody>
                 </table>
             </div>
+            
+            <h3>Skill Transferability (100 Points)</h3>
+            <ul>
+                <li>Education + Good Language: <strong>50 pts</strong></li>
+                <li>Foreign Exp + Good Language (CLB 7+): <strong>50 pts</strong></li>
+            </ul>
+        </div>
 
-(remaining content omitted for brevity)
+        <!-- Slide 4: Additional Points -->
+        <div class="slide">
+            <h1>🍁 CRS: Additional Points</h1>
+            <div class="canadian-banner">Boost Your Score</div>
+            <p>These factors can grant up to <strong style="color: var(--accent-color); font-size: 1.3rem;">600 points</strong>.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Factors</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Brother/Sister living in Canada (Citizen/PR)</td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td><strong>French Language Skills (Min CLB 7)</strong></td>
+                        <td><strong>50</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Post-secondary education in Canada</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>Arranged Employment</td>
+                        <td>50 / 200</td>
+                    </tr>
+                    <tr>
+                        <td>PN Nomination (Provincial Nominee)</td>
+                        <td>600</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box">
+                CRS = Core Factors + Transferability + Additional Points
+            </div>
+        </div>
+
+        <!-- Slide 5: Cut-off History -->
+        <div class="slide">
+            <h1>🍁 Express Entry Cut-off History</h1>
+            <div class="canadian-banner">Recent Invitation Rounds</div>
+            <p>A snapshot of recent rounds - <strong style="color: var(--accent-color);">French proficiency opens doors!</strong></p>
+            <div id="loading-message" style="text-align: center; padding: 20px; color: var(--primary-color);">
+                <div style="font-size: 2rem;">⏳</div>
+                <p>Loading latest Express Entry draws from IRCC...</p>
+            </div>
+            <div class="table-container" id="cutoff-table-container" style="max-height: 400px; overflow-y: auto; display: none;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Round Type</th>
+                            <th>CRS Score (Lowest)</th>
+                            <th>Invitations</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cutoff-table-body">
+                        <!-- Data will be populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+            <p id="update-timestamp" style="font-size: 0.8rem; color: #666; margin-top: 10px;"></p>
+            <p><em>Note: French proficiency draws often have significantly lower cutoff scores.</em></p>
+        </div>
+
+        <!-- Slide 6: Case Study 1 -->
+        <div class="slide">
+            <h1>🍁 The Master Key: Scenario 1</h1>
+            <div class="canadian-banner">Real Success Story</div>
+            <h2>Shruti MULVADI (27 yrs, Best Case)</h2>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Current Status</h3>
+                    <ul>
+                        <li>Education: BE + PGD</li>
+                        <li>Exp: 3 Years</li>
+                        <li>English: CLB 10</li>
+                    </ul>
+                    <div class="highlight-box">Previous CRS: <strong>464</strong></div>
+                </div>
+
+                <div class="card" style="border-left-color: var(--accent-color);">
+                    <h3>🍁 With TEF Compass</h3>
+                    <p>Achieving French CLB 7+</p>
+                    <ul>
+                        <li>🎯 French Points: +50</li>
+                        <li>📈 Skill Transferability Boost</li>
+                        <li>💬 Language Points Boost</li>
+                        <li><strong style="color: var(--accent-color);">Total Boost: +62 pts</strong></li>
+                    </ul>
+                    <div class="highlight-box">New Potential CRS: <strong style="font-size: 1.5rem;">526 🎉</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Case Study 2 -->
+        <div class="slide">
+            <h1>🍁 The Master Key: Scenario 2</h1>
+            <div class="canadian-banner">Common Path to Success</div>
+            <h2>Mahesh T (33 yrs, Common Scenario)</h2>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Current Status</h3>
+                    <ul>
+                        <li>Education: BE + PGD</li>
+                        <li>Exp: 3 Years</li>
+                        <li>English: CLB 9</li>
+                    </ul>
+                    <div class="highlight-box">Previous CRS: <strong>432</strong></div>
+                </div>
+
+                <div class="card" style="border-left-color: var(--accent-color);">
+                    <h3>🍁 With TEF Compass</h3>
+                    <p><strong>Achieving French CLB 7</strong></p>
+                    <p>Potential CRS boosted through TEF Compass <strong style="color: var(--accent-color);">(+62)</strong></p>
+                    <br>
+                    <div class="highlight-box">New Potential CRS: <strong style="font-size: 1.5rem;">494 🎉</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: The Program -->
+        <div class="slide">
+            <div style="text-align: center; margin: auto;">
+                <div class="maple-icon" style="font-size: 3rem;">🍁</div>
+                <h1 style="color: var(--primary-color);">HERE AND NOW - The Language Institute</h1>
+                <h2 style="color: var(--text-color); margin-bottom: 10px;">Proudly Presents</h2>
+                <h2 style="font-size: 3rem; border: none; color: var(--accent-color);">TEF Compass</h2>
+                <div class="canadian-banner" style="font-size: 1.2rem;">🇨🇦 Your Bridge to Canadian Dreams 🇨🇦</div>
+                <p style="font-size: 1.1rem; margin-top: 20px;">The Only Program You'd ever need to crack The TEF CANADA Exam.</p>
+                <div class="highlight-box"><strong>From A1 to C2 - PUSH YOUR LIMITS</strong></div>
+            </div>
+        </div>
+
+        <!-- Slide 9: CEFR Levels -->
+        <div class="slide">
+            <h1>🍁 CEFR Levels Explained</h1>
+            <div class="canadian-banner">European Framework for Language Proficiency</div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Level</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>A1</td><td>Basic user. Can introduce self and ask basic questions.</td></tr>
+                        <tr><td>A2</td><td>Can communicate in simple, routine tasks (shopping, geography).</td></tr>
+                        <tr><td>B1</td><td>Can deal with travel situations, describe experiences and dreams.</td></tr>
+                        <tr><td>B2</td><td><strong>The Goal (CLB 7)</strong>. Can understand complex text, interact with fluency.</td></tr>
+                        <tr><td>C1</td><td>Advanced. Flexible and effective language use for professional purposes.</td></tr>
+                        <tr><td>C2</td><td>Mastery. Can understand virtually everything heard or read with ease.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 10: Course Structure -->
+        <div class="slide">
+            <h1>🍁 TEF Compass Program Details</h1>
+            <div class="canadian-banner">Complete Learning Journey</div>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Structure</h3>
+                    <ul>
+                        <li><strong>Level Covered:</strong> A1, A2, B1, B2 & TEF Prép</li>
+                        <li><strong>Possible Result:</strong> CLB 7+</li>
+                        <li><strong>Duration:</strong> 270 Days / ~9-12 Months</li>
+                        <li><strong>Mode:</strong> Online / Part-time</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Modules</h3>
+                    <ol>
+                        <li>Listening (Core)</li>
+                        <li>Reading (Core)</li>
+                        <li>Writing (Core)</li>
+                        <li>Speaking (Core)</li>
+                        <li>Grammar (Allied)</li>
+                        <li>Phonetic (Allied)</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: TEF Scoring & Conversion -->
+        <div class="slide">
+            <h1>🍁 Score Conversion (TEF → CLB → CRS)</h1>
+            <div class="canadian-banner">Understanding Your Score Impact</div>
+            <p><strong style="color: var(--accent-color);">TEF Maximum Score per section: 699</strong></p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>TEF Score Range</th>
+                            <th>CLB Level</th>
+                            <th>CRS Core Boost</th>
+                            <th>CRS Additional</th>
+                            <th>Total Boost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>533 - 699+ (C1/C2)</td>
+                            <td>9 - 10+</td>
+                            <td>24</td>
+                            <td>50</td>
+                            <td><strong>74</strong></td>
+                        </tr>
+                        <tr>
+                            <td>450 - 532 (B2+)</td>
+                            <td>8</td>
+                            <td>15</td>
+                            <td>50</td>
+                            <td><strong>65</strong></td>
+                        </tr>
+                        <tr>
+                            <td>400 - 449 (B2)</td>
+                            <td>7 (Min Reqd)</td>
+                            <td>12</td>
+                            <td>50</td>
+                            <td><strong>62</strong></td>
+                        </tr>
+                        <tr>
+                            <td>310 - 348 (B1)</td>
+                            <td>5</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>0 - 309 (A1/A2)</td>
+                            <td>< 5</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 12: Other Offerings -->
+        <div class="slide">
+            <h1>🍁 Other Programs & Certification</h1>
+            <div class="canadian-banner">Expand Your Options</div>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Other Programs</h3>
+                    <ul>
+                        <li><strong>Immersion Program:</strong> 6 Months (A1-B2)</li>
+                        <li><strong>Diploma in Business French:</strong> 12 Months</li>
+                        <li><strong>Young Learners' Program:</strong> A1-B1</li>
+                        <li><strong>Corporate French</strong></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Certifications</h3>
+                    <p>Students can obtain external certifications (Optional):</p>
+                    <ul>
+                        <li>DELF A1 - B2</li>
+                        <li>DALF C1 - C2</li>
+                    </ul>
+                    <p>Internal Certification provided by <strong>Here and Now</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- End Slider Wrapper -->
+
+    <!-- Footer - Powered by AI -->
+    <div class="footer-branding">
+        <span>Powered by</span>
+        <img src="https://raw.githubusercontent.com/hereandnowai/images/refs/heads/main/logos/logo-of-here-and-now-ai.png" alt="HERE AND NOW AI">
+        <a href="https://hereandnowai.com" target="_blank"></a>
+    </div>
+
+    <div class="page-counter" id="pageCounter">Page 1 / 12</div>
+    
+    <div class="controls">
+        <button id="prevBtn" disabled>&#8592; Previous</button>
+        <button id="nextBtn">Next &#8594;</button>
+    </div>
+</div>
+
+<script>
+    // Maple Leaf Animation
+    function createMapleLeaf() {
+        const container = document.getElementById('maple-leaves-container');
+        const leaf = document.createElement('div');
+        leaf.className = 'maple-leaf';
+        leaf.innerHTML = '🍁';
+        leaf.style.left = Math.random() * 100 + '%';
+        leaf.style.fontSize = (Math.random() * 20 + 20) + 'px';
+        leaf.style.animationDuration = (Math.random() * 5 + 8) + 's';
+        leaf.style.animationDelay = Math.random() * 5 + 's';
+        
+        container.appendChild(leaf);
+        
+        // Remove leaf after animation
+        setTimeout(() => {
+            leaf.remove();
+        }, 15000);
+    }
+
+    // Create multiple maple leaves
+    for (let i = 0; i < 15; i++) {
+        setTimeout(() => createMapleLeaf(), i * 800);
+    }
+
+    // Continue creating leaves
+    setInterval(() => {
+        createMapleLeaf();
+    }, 3000);
+
+    // Slider functionality
+    const slider = document.getElementById('slider');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const pageCounter = document.getElementById('pageCounter');
+    
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    function updateSlider() {
+        // Move the slider using transform
+        slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        
+        // Update Buttons
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex === totalSlides - 1;
+        
+        // Update Counter
+        pageCounter.innerText = `Page ${currentIndex + 1} / ${totalSlides}`;
+    }
+
+    nextBtn.addEventListener('click', () => {
+        if (currentIndex < totalSlides - 1) {
+            currentIndex++;
+            updateSlider();
+        }
+    });
+
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateSlider();
+        }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' && currentIndex < totalSlides - 1) {
+            currentIndex++;
+            updateSlider();
+        }
+        if (e.key === 'ArrowLeft' && currentIndex > 0) {
+            currentIndex--;
+            updateSlider();
+        }
+    });
+
+    // Initialize
+    updateSlider();
+
+    // ========================================
+    // Dynamic Express Entry Data Fetcher
+    // ========================================
+    async function fetchExpressEntryData() {
+        const loadingMsg = document.getElementById('loading-message');
+        const tableContainer = document.getElementById('cutoff-table-container');
+        const tableBody = document.getElementById('cutoff-table-body');
+        const timestamp = document.getElementById('update-timestamp');
+
+        try {
+            // Use CORS proxy to fetch IRCC page
+            const corsProxy = 'https://api.allorigins.win/raw?url=';
+            const irccUrl = encodeURIComponent('https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/policies-operational-instructions-agreements/ministerial-instructions/express-entry-rounds.html');
+            
+            const response = await fetch(corsProxy + irccUrl);
+            
+            if (!response.ok) {
+                throw new Error('Failed to fetch data');
+            }
+
+            const html = await response.text();
+            
+            // Parse the HTML to extract table data
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            // The IRCC page uses a specific table structure - find it
+            // Look for the table with Express Entry data
+            const tables = doc.querySelectorAll('table');
+            let drawsData = [];
+            
+            // Try to find the main data table by looking for specific headers
+            for (let table of tables) {
+                const headers = table.querySelectorAll('th');
+                let hasRoundNumber = false;
+                let hasDate = false;
+                let hasCRS = false;
+                
+                headers.forEach(th => {
+                    const text = th.textContent.toLowerCase();
+                    if (text.includes('#') || text.includes('round')) hasRoundNumber = true;
+                    if (text.includes('date')) hasDate = true;
+                    if (text.includes('crs') || text.includes('score')) hasCRS = true;
+                });
+                
+                // If this table has the right headers, parse it
+                if (hasRoundNumber && hasDate && hasCRS) {
+                    const rows = table.querySelectorAll('tbody tr');
+                    rows.forEach((row, index) => {
+                        if (index < 15) { // Get latest 15 draws
+                            const cells = row.querySelectorAll('td');
+                            if (cells.length >= 4) {
+                                const roundNum = cells[0]?.textContent.trim() || 'N/A';
+                                const dateText = cells[1]?.textContent.trim() || 'N/A';
+                                const roundType = cells[2]?.textContent.trim() || 'N/A';
+                                const crsScore = cells[3]?.textContent.trim() || 'N/A';
+                                const invites = cells[4]?.textContent.trim() || 'N/A';
+                                
+                                // Only add if we have valid data
+                                if (roundNum !== 'N/A' && crsScore !== 'N/A') {
+                                    drawsData.push({
+                                        number: roundNum,
+                                        date: dateText,
+                                        type: roundType,
+                                        crs: crsScore,
+                                        invitations: invites
+                                    });
+                                }
+                            }
+                        }
+                    });
+                    
+                    if (drawsData.length > 0) break;
+                }
+            }
+
+            // Fallback: If parsing failed, use cached/default data
+            if (drawsData.length === 0) {
+                console.warn('Failed to parse live data, using fallback');
+                drawsData = getFallbackData();
+            }
+
+            // Populate table
+            tableBody.innerHTML = '';
+            drawsData.forEach((draw) => {
+                const row = document.createElement('tr');
+                
+                // Highlight French language proficiency draws
+                const isFrench = draw.type.toLowerCase().includes('french');
+                const crsCell = isFrench ? `<strong style="color: var(--accent-color);">${draw.crs}</strong>` : draw.crs;
+                
+                row.innerHTML = `
+                    <td>${draw.number}</td>
+                    <td>${draw.date}</td>
+                    <td>${draw.type}</td>
+                    <td>${crsCell}</td>
+                    <td>${draw.invitations}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+
+            // Show table, hide loading
+            loadingMsg.style.display = 'none';
+            tableContainer.style.display = 'block';
+            
+            // Update timestamp with both ET and IST
+            const nowET = new Date().toLocaleString('en-CA', { 
+                timeZone: 'America/Toronto',
+                dateStyle: 'medium',
+                timeStyle: 'short'
+            });
+            const nowIST = new Date().toLocaleString('en-IN', { 
+                timeZone: 'Asia/Kolkata',
+                dateStyle: 'medium',
+                timeStyle: 'short'
+            });
+            timestamp.textContent = `Last updated: ${nowET} (ET) | ${nowIST} (IST)`;
+
+        } catch (error) {
+            console.error('Error fetching Express Entry data:', error);
+            
+            // Show fallback data
+            const fallbackData = getFallbackData();
+            tableBody.innerHTML = '';
+            fallbackData.forEach((draw) => {
+                const row = document.createElement('tr');
+                const isFrench = draw.type.toLowerCase().includes('french');
+                const crsCell = isFrench ? `<strong style="color: var(--accent-color);">${draw.crs}</strong>` : draw.crs;
+                
+                row.innerHTML = `
+                    <td>${draw.number}</td>
+                    <td>${draw.date}</td>
+                    <td>${draw.type}</td>
+                    <td>${crsCell}</td>
+                    <td>${draw.invitations}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+            
+            loadingMsg.innerHTML = '<p style="color: #ff6b6b;">⚠️ Using cached data (live fetch unavailable)</p>';
+            setTimeout(() => {
+                loadingMsg.style.display = 'none';
+                tableContainer.style.display = 'block';
+            }, 2000);
+            
+            // Update timestamp with both ET and IST for fallback
+            const nowET = new Date().toLocaleString('en-CA', { 
+                timeZone: 'America/Toronto',
+                dateStyle: 'medium',
+                timeStyle: 'short'
+            });
+            const nowIST = new Date().toLocaleString('en-IN', { 
+                timeZone: 'Asia/Kolkata',
+                dateStyle: 'medium',
+                timeStyle: 'short'
+            });
+            timestamp.textContent = `Showing cached data | ${nowET} (ET) | ${nowIST} (IST)`;
+        }
+    }
+
+    function getFallbackData() {
+        return [
+            { number: '385', date: 'December 11, 2025', type: 'Healthcare and social services occupations', crs: '476', invitations: '1,000' },
+            { number: '384', date: 'December 10, 2025', type: 'Canadian Experience Class', crs: '520', invitations: '6,000' },
+            { number: '383', date: 'December 8, 2025', type: 'Provincial Nominee Program', crs: '729', invitations: '1,123' },
+            { number: '382', date: 'November 28, 2025', type: 'French language proficiency', crs: '408', invitations: '6,000' },
+            { number: '381', date: 'November 26, 2025', type: 'Canadian Experience Class', crs: '531', invitations: '1,000' },
+            { number: '380', date: 'November 25, 2025', type: 'Provincial Nominee Program', crs: '699', invitations: '777' },
+            { number: '379', date: 'November 14, 2025', type: 'Healthcare and social services occupations', crs: '462', invitations: '3,500' },
+            { number: '378', date: 'November 12, 2025', type: 'Canadian Experience Class', crs: '533', invitations: '1,000' },
+            { number: '377', date: 'November 6, 2025', type: 'Provincial Nominee Program', crs: '711', invitations: '1,358' },
+            { number: '376', date: 'October 31, 2025', type: 'French language proficiency', crs: '445', invitations: '800' }
+        ];
+    }
+
+    // Fetch data when page loads
+    window.addEventListener('load', fetchExpressEntryData);
+</script>
+
+</body>
+</html>
