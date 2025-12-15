@@ -10,7 +10,7 @@
             --primary-color: #004040; /* HERE AND NOW Secondary */
             --accent-color: #FF0000;  /* Canadian Flag Red */
             --highlight-color: #FFDF00; /* HERE AND NOW Primary Yellow */
-            --bg-color: #f4f9f9;
+            --bg-color: #f4f4f9;
             --text-color: #333;
             --white: #ffffff;
         }
@@ -107,7 +107,7 @@
         /* Footer - Powered by AI */
         .footer-branding {
             position: absolute;
-            bottom: 65px;
+            bottom: 30px; /* align with page counter and controls */
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -116,6 +116,7 @@
             font-size: 0.75rem;
             color: #666;
             z-index: 90;
+            pointer-events: none; /* non-interactive to avoid accidental clicks */
         }
 
         .footer-branding img {
@@ -222,6 +223,110 @@
             box-shadow: 0 2px 10px rgba(255,0,0,0.3);
         }
 
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--accent-color);
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+
+        tr:nth-child(even) {background-color: #fff5f5;}
+
+        /* Controls */
+        .controls {
+            position: absolute;
+            bottom: 30px; /* align with page counter and footer-branding */
+            right: 40px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+            background: rgba(255,255,255,0.8);
+            padding: 5px;
+            border-radius: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: var(--accent-color);
+            color: white;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: background 0.3s;
+            box-shadow: 0 2px 8px rgba(255,0,0,0.3);
+        }
+
+        button:hover {
+            background: #cc0000;
+            box-shadow: 0 4px 12px rgba(255,0,0,0.5);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .page-counter {
+            position: absolute;
+            bottom: 30px;
+            left: 40px;
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: bold;
+        }
+
+        /* Specific Visuals */
+        .level-options {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            gap: 15px;
+        }
+        .level-btn {
+            background: var(--white);
+            border: 3px solid var(--accent-color);
+            color: var(--primary-color);
+            padding: 20px;
+            width: 30%;
+            text-align: center;
+            border-radius: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(255,0,0,0.2);
+        }
+
+        .level-btn:hover {
+            background: linear-gradient(135deg, #ffe0e0 0%, #ffffff 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255,0,0,0.4);
+        }
+
+        .maple-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
         @media (max-width: 768px) {
             .card-grid { grid-template-columns: 1fr; }
             .slide { padding: 20px 25px; }
@@ -260,4 +365,99 @@
                         <strong>Beginner</strong><br>
                         "I am just beginning to learn the process"
                     </div>
-                    <div class=":
+                    <div class="level-btn">
+                        <div class="maple-icon">🍁</div>
+                        <strong>Intermediate</strong><br>
+                        "I know until IELTS but I don't know much about TEF"
+                    </div>
+                    <div class="level-btn">
+                        <div class="maple-icon">🍁</div>
+                        <strong>Advanced</strong><br>
+                        "I know everything, I would like to improve my CRS through TEF"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Programs Overview -->
+        <div class="slide">
+            <h1>🍁 Canadian Immigration Programs</h1>
+            <div class="canadian-banner">Over 60 Programs Available</div>
+            <div class="highlight-box"><strong>🇨🇦 Your Path to Canada Starts Here</strong></div>
+            
+            <h3>Popular Ones via Express Entry</h3>
+            <ul>
+                <li><strong>FSW (Federal Skilled Worker):</strong> Immigrate as a skilled worker.</li>
+                <li><strong>Provincial Nominees:</strong> Immigrate by being nominated by a province/territory.</li>
+                <li><strong>CEC (Canadian Experience Class):</strong> For those with Canadian work experience.</li>
+                <li><strong>Quebec-selected skilled workers:</strong> For the province of Quebec.</li>
+            </ul>
+
+            <h3>Other Key Pilots & Streams</h3>
+            <div class="card-grid">
+                <div>
+                    <ul>
+                        <li>Family Sponsorship</li>
+                        <li>Atlantic Immigration Pilot</li>
+                        <li>Caregivers (Children/Elderly/Medical needs)</li>
+                        <li>Start-up Visa</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li>Self-employed (Cultural/Athletic)</li>
+                        <li>Rural and Northern Immigration Pilot</li>
+                        <li>Agri-Food Pilot</li>
+                        <li>Refugees</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Express Entry Breakdown -->
+        <div class="slide">
+            <h1>🍁 Express Entry: CRS Criteria</h1>
+            <div class="canadian-banner">Points-Based Immigration System</div>
+            <p>Immigrate as a skilled worker. <br><strong style="color: var(--accent-color); font-size: 1.3rem;">Max Total: 1,200 points</strong></p>
+
+            <h3>Core / Human Capital Factors (Max 500)</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Factor</th>
+                            <th>With Spouse</th>
+                            <th>Without Spouse</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Age</td>
+                            <td>100 (up to 29 yrs)</td>
+                            <td>110</td>
+                        </tr>
+                        <tr>
+                            <td>Education</td>
+                            <td>140 (+10 for spouse)</td>
+                            <td>150</td>
+                        </tr>
+                        <tr>
+                            <td>1st Official Language</td>
+                            <td>128 (+20 for spouse)</td>
+                            <td>136</td>
+                        </tr>
+                        <tr>
+                            <td>2nd Official Language</td>
+                            <td>22 max</td>
+                            <td>24 max</td>
+                        </tr>
+                        <tr>
+                            <td>Canadian Experience</td>
+                            <td>70 (+10 for spouse)</td>
+                            <td>80</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+(remaining content omitted for brevity)
