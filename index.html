@@ -815,34 +815,47 @@
         pageCounter.innerText = `Page ${currentIndex + 1} / ${totalSlides}`;
     }
 
+    function goToSlideFromHash() {
+        const hash = window.location.hash;
+        if (hash && hash.startsWith('#slide-')) {
+            const slideNum = parseInt(hash.replace('#slide-', ''));
+            if (!isNaN(slideNum) && slideNum >= 1 && slideNum <= totalSlides) {
+                currentIndex = slideNum - 1;
+                updateSlider();
+            }
+        }
+    }
+
     nextBtn.addEventListener('click', () => {
         if (currentIndex < totalSlides - 1) {
-            currentIndex++;
-            updateSlider();
+            window.location.hash = 'slide-' + (currentIndex + 2);
         }
     });
 
     prevBtn.addEventListener('click', () => {
         if (currentIndex > 0) {
-            currentIndex--;
-            updateSlider();
+            window.location.hash = 'slide-' + currentIndex;
         }
     });
 
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight' && currentIndex < totalSlides - 1) {
-            currentIndex++;
-            updateSlider();
+            window.location.hash = 'slide-' + (currentIndex + 2);
         }
         if (e.key === 'ArrowLeft' && currentIndex > 0) {
-            currentIndex--;
-            updateSlider();
+            window.location.hash = 'slide-' + currentIndex;
         }
     });
 
+    window.addEventListener('hashchange', goToSlideFromHash);
+
     // Initialize
-    updateSlider();
+    if (window.location.hash) {
+        goToSlideFromHash();
+    } else {
+        updateSlider();
+    }
 
     // ========================================
     // Dynamic Express Entry Data Fetcher
