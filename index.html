@@ -328,6 +328,51 @@
             margin-bottom: 10px;
         }
 
+        /* Calculator Styles */
+        .calculator-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+        .calc-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .calc-group label {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .calc-group select, .calc-group input {
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        .score-display {
+            grid-column: span 2;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            margin-top: 5px;
+            border-bottom: 4px solid var(--accent-color);
+        }
+        .score-display h2 {
+            color: var(--highlight-color);
+            border: none;
+            margin: 0;
+            padding: 0;
+            font-size: 2.2rem;
+        }
+
         @media (max-width: 768px) {
             .card-grid { grid-template-columns: 1fr; }
             .slide { padding: 20px 25px; }
@@ -597,7 +642,76 @@
             </div>
         </div>
 
-        <!-- Slide 8: The Program -->
+        <!-- Slide 8: Live CRS Calculator -->
+        <div class="slide">
+            <h1>🍁 Live CRS Calculator</h1>
+            <div class="canadian-banner">Estimate Your Express Entry Score</div>
+            
+            <div class="calculator-form">
+                <div class="calc-group">
+                    <label>Marital Status</label>
+                    <select id="calc-marital" onchange="calculateCRS()">
+                        <option value="single">Single / Never Married</option>
+                        <option value="married">Married / Common-law</option>
+                    </select>
+                </div>
+                <div class="calc-group">
+                    <label>Age</label>
+                    <input type="number" id="calc-age" value="25" min="18" max="60" oninput="calculateCRS()">
+                </div>
+                <div class="calc-group">
+                    <label>Education Level</label>
+                    <select id="calc-edu" onchange="calculateCRS()">
+                        <option value="highschool">High School</option>
+                        <option value="degree">Bachelor's Degree (3+ years)</option>
+                        <option value="twodegrees">Two or more certificates/degrees</option>
+                        <option value="masters">Master's Degree</option>
+                        <option value="phd">Doctoral Level (Ph.D.)</option>
+                    </select>
+                </div>
+                <div class="calc-group">
+                    <label>Canadian Work Experience</label>
+                    <select id="calc-can-exp" onchange="calculateCRS()">
+                        <option value="0">None</option>
+                        <option value="1">1 Year</option>
+                        <option value="2">2 Years</option>
+                        <option value="3">3+ Years</option>
+                    </select>
+                </div>
+                <div class="calc-group">
+                    <label>English Proficiency (IELTS/CELPIP)</label>
+                    <select id="calc-eng" onchange="calculateCRS()">
+                        <option value="clb5">CLB 5 or below</option>
+                        <option value="clb7">CLB 7 (Minimum for FSW)</option>
+                        <option value="clb9">CLB 9 (The "Golden" Score)</option>
+                        <option value="clb10">CLB 10+</option>
+                    </select>
+                </div>
+                <div class="calc-group">
+                    <label>French Proficiency (TEF/TCF)</label>
+                    <select id="calc-fre" onchange="calculateCRS()">
+                        <option value="none">None / Below CLB 5</option>
+                        <option value="clb5">CLB 5 - 6</option>
+                        <option value="clb7">CLB 7+ (The "Master Key")</option>
+                    </select>
+                </div>
+                <div class="calc-group">
+                    <label>Additional Factors</label>
+                    <div style="font-size: 0.8rem;">
+                        <input type="checkbox" id="calc-pnp" onchange="calculateCRS()"> Provincial Nomination (+600)<br>
+                        <input type="checkbox" id="calc-sibling" onchange="calculateCRS()"> Sibling in Canada (+15)<br>
+                        <input type="checkbox" id="calc-can-edu" onchange="calculateCRS()"> Canadian Education (+30)
+                    </div>
+                </div>
+                <div class="score-display">
+                    <p>Your Estimated CRS Score</p>
+                    <h2 id="total-crs">0</h2>
+                    <p style="font-size: 0.7rem; margin-top: 5px;">*Based on 2025 IRCC criteria. Job offer points removed as of March 25, 2025.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: The Program -->
         <div class="slide">
             <div style="text-align: center; margin: auto;">
                 <div class="maple-icon" style="font-size: 3rem;">🍁</div>
@@ -610,7 +724,7 @@
             </div>
         </div>
 
-        <!-- Slide 9: CEFR Levels -->
+        <!-- Slide 10: CEFR Levels -->
         <div class="slide">
             <h1>🍁 CEFR Levels Explained</h1>
             <div class="canadian-banner">European Framework for Language Proficiency</div>
@@ -634,7 +748,7 @@
             </div>
         </div>
 
-        <!-- Slide 10: Course Structure -->
+        <!-- Slide 11: Course Structure -->
         <div class="slide">
             <h1>🍁 TEF Compass Program Details</h1>
             <div class="canadian-banner">Complete Learning Journey</div>
@@ -663,7 +777,7 @@
             </div>
         </div>
 
-        <!-- Slide 11: TEF Scoring & Conversion -->
+        <!-- Slide 12: TEF Scoring & Conversion -->
         <div class="slide">
             <h1>🍁 Score Conversion (TEF → CLB → CRS)</h1>
             <div class="canadian-banner">Understanding Your Score Impact</div>
@@ -720,7 +834,7 @@
             </div>
         </div>
 
-        <!-- Slide 12: Other Offerings -->
+        <!-- Slide 13: Other Offerings -->
         <div class="slide">
             <h1>🍁 Other Programs & Certification</h1>
             <div class="canadian-banner">Expand Your Options</div>
@@ -755,7 +869,7 @@
         <a href="https://hereandnowai.com" target="_blank"></a>
     </div>
 
-    <div class="page-counter" id="pageCounter">Page 1 / 12</div>
+    <div class="page-counter" id="pageCounter">Page 1 / 13</div>
     
     <div class="controls">
         <button id="prevBtn" disabled>&#8592; Previous</button>
@@ -856,6 +970,83 @@
     } else {
         updateSlider();
     }
+
+    // ========================================
+    // CRS Calculator Logic
+    // ========================================
+    function calculateCRS() {
+        const marital = document.getElementById('calc-marital').value;
+        const age = parseInt(document.getElementById('calc-age').value) || 0;
+        const edu = document.getElementById('calc-edu').value;
+        const canExp = document.getElementById('calc-can-exp').value;
+        const eng = document.getElementById('calc-eng').value;
+        const fre = document.getElementById('calc-fre').value;
+        
+        const pnp = document.getElementById('calc-pnp').checked;
+        const sibling = document.getElementById('calc-sibling').checked;
+        const canEdu = document.getElementById('calc-can-edu').checked;
+
+        let score = 0;
+        const isMarried = (marital === 'married');
+
+        // 1. Age Points
+        if (age >= 20 && age <= 29) score += isMarried ? 100 : 110;
+        else if (age === 30) score += isMarried ? 95 : 105;
+        else if (age === 31) score += isMarried ? 90 : 99;
+        else if (age === 32) score += isMarried ? 85 : 94;
+        else if (age === 33) score += isMarried ? 80 : 88;
+        else if (age === 34) score += isMarried ? 75 : 83;
+        else if (age === 35) score += isMarried ? 70 : 77;
+        else if (age >= 45) score += 0;
+        else if (age > 35) score += Math.max(0, (isMarried ? 70 : 77) - (age - 35) * 5);
+
+        // 2. Education Points
+        const eduPoints = {
+            'phd': isMarried ? 140 : 150,
+            'masters': isMarried ? 126 : 135,
+            'twodegrees': isMarried ? 119 : 128,
+            'degree': isMarried ? 112 : 120,
+            'highschool': isMarried ? 28 : 30
+        };
+        score += eduPoints[edu] || 0;
+
+        // 3. Language Points (Simplified for orientation)
+        const engPoints = {
+            'clb10': isMarried ? 128 : 136,
+            'clb9': isMarried ? 116 : 124,
+            'clb7': isMarried ? 64 : 68,
+            'clb5': 24
+        };
+        score += engPoints[eng] || 0;
+
+        // 4. Canadian Experience
+        const expPoints = {
+            '3': isMarried ? 70 : 80,
+            '2': isMarried ? 46 : 53,
+            '1': isMarried ? 35 : 40,
+            '0': 0
+        };
+        score += expPoints[canExp] || 0;
+
+        // 5. Skill Transferability (Simplified: Education + Language)
+        if (edu !== 'highschool' && (eng === 'clb9' || eng === 'clb10')) {
+            score += 50; // Max transferability for good language + degree
+        }
+
+        // 6. Additional Factors
+        if (pnp) score += 600;
+        if (sibling) score += 15;
+        if (canEdu) score += 30;
+        
+        // French Bonus
+        if (fre === 'clb7') score += 50;
+        else if (fre === 'clb5') score += 12;
+
+        document.getElementById('total-crs').innerText = score;
+    }
+
+    // Run once on load
+    window.addEventListener('DOMContentLoaded', calculateCRS);
 
     // ========================================
     // Dynamic Express Entry Data Fetcher
