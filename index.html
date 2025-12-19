@@ -867,70 +867,29 @@
         const timestamp = document.getElementById('update-timestamp');
 
         try {
-            // Use CORS proxy to fetch IRCC page
+            // Use CORS proxy to fetch IRCC JSON data directly with cache busting
             const corsProxy = 'https://api.allorigins.win/raw?url=';
-            const irccUrl = encodeURIComponent('https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/policies-operational-instructions-agreements/ministerial-instructions/express-entry-rounds.html');
+            const irccJsonUrl = encodeURIComponent('https://www.canada.ca/content/dam/ircc/documents/json/ee_rounds_123_en.json?t=' + new Date().getTime());
             
-            const response = await fetch(corsProxy + irccUrl);
+            const response = await fetch(corsProxy + irccJsonUrl);
             
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
             }
 
-            const html = await response.text();
-            
-            // Parse the HTML to extract table data
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            
-            // The IRCC page uses a specific table structure - find it
-            // Look for the table with Express Entry data
-            const tables = doc.querySelectorAll('table');
+            const data = await response.json();
             let drawsData = [];
             
-            // Try to find the main data table by looking for specific headers
-            for (let table of tables) {
-                const headers = table.querySelectorAll('th');
-                let hasRoundNumber = false;
-                let hasDate = false;
-                let hasCRS = false;
-                
-                headers.forEach(th => {
-                    const text = th.textContent.toLowerCase();
-                    if (text.includes('#') || text.includes('round')) hasRoundNumber = true;
-                    if (text.includes('date')) hasDate = true;
-                    if (text.includes('crs') || text.includes('score')) hasCRS = true;
-                });
-                
-                // If this table has the right headers, parse it
-                if (hasRoundNumber && hasDate && hasCRS) {
-                    const rows = table.querySelectorAll('tbody tr');
-                    rows.forEach((row, index) => {
-                        if (index < 15) { // Get latest 15 draws
-                            const cells = row.querySelectorAll('td');
-                            if (cells.length >= 4) {
-                                const roundNum = cells[0]?.textContent.trim() || 'N/A';
-                                const dateText = cells[1]?.textContent.trim() || 'N/A';
-                                const roundType = cells[2]?.textContent.trim() || 'N/A';
-                                const crsScore = cells[3]?.textContent.trim() || 'N/A';
-                                const invites = cells[4]?.textContent.trim() || 'N/A';
-                                
-                                // Only add if we have valid data
-                                if (roundNum !== 'N/A' && crsScore !== 'N/A') {
-                                    drawsData.push({
-                                        number: roundNum,
-                                        date: dateText,
-                                        type: roundType,
-                                        crs: crsScore,
-                                        invitations: invites
-                                    });
-                                }
-                            }
-                        }
-                    });
-                    
-                    if (drawsData.length > 0) break;
-                }
+            if (data && data.rounds && Array.isArray(data.rounds)) {
+                // Get latest 50 draws to cover more history
+                const latestRounds = data.rounds.slice(0, 50);
+                drawsData = latestRounds.map(round => ({
+                    number: round.drawNumber || 'N/A',
+                    date: round.drawDateFull || 'N/A',
+                    type: round.drawName || 'N/A',
+                    crs: round.drawCRS || 'N/A',
+                    invitations: round.drawSize || 'N/A'
+                }));
             }
 
             // Fallback: If parsing failed, use cached/default data
@@ -1019,16 +978,16 @@
 
     function getFallbackData() {
         return [
+            { number: '388', date: 'December 17, 2025', type: 'French language proficiency (Version 1)', crs: '399', invitations: '6,000' },
+            { number: '387', date: 'December 16, 2025', type: 'Canadian Experience Class', crs: '515', invitations: '5,000' },
+            { number: '386', date: 'December 15, 2025', type: 'Provincial Nominee Program', crs: '731', invitations: '399' },
             { number: '385', date: 'December 11, 2025', type: 'Healthcare and social services occupations', crs: '476', invitations: '1,000' },
             { number: '384', date: 'December 10, 2025', type: 'Canadian Experience Class', crs: '520', invitations: '6,000' },
             { number: '383', date: 'December 8, 2025', type: 'Provincial Nominee Program', crs: '729', invitations: '1,123' },
             { number: '382', date: 'November 28, 2025', type: 'French language proficiency', crs: '408', invitations: '6,000' },
             { number: '381', date: 'November 26, 2025', type: 'Canadian Experience Class', crs: '531', invitations: '1,000' },
             { number: '380', date: 'November 25, 2025', type: 'Provincial Nominee Program', crs: '699', invitations: '777' },
-            { number: '379', date: 'November 14, 2025', type: 'Healthcare and social services occupations', crs: '462', invitations: '3,500' },
-            { number: '378', date: 'November 12, 2025', type: 'Canadian Experience Class', crs: '533', invitations: '1,000' },
-            { number: '377', date: 'November 6, 2025', type: 'Provincial Nominee Program', crs: '711', invitations: '1,358' },
-            { number: '376', date: 'October 31, 2025', type: 'French language proficiency', crs: '445', invitations: '800' }
+            { number: '379', date: 'November 14, 2025', type: 'Healthcare and social services occupations', crs: '462', invitations: '3,500' }
         ];
     }
 
