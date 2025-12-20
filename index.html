@@ -718,7 +718,7 @@
             <div style="flex: 1; display: flex; justify-content: center; align-items: center; padding: 10px 20px 80px 20px;">
                 <iframe 
                     style="width: 95%; max-width: 1200px; aspect-ratio: 16/9; border-radius: 12px; border: 4px solid var(--accent-color); box-shadow: 0 10px 30px rgba(0,0,0,0.3);"
-                    src="https://www.youtube.com/embed/zrQntyEiRkE?start=12&rel=0&modestbranding=1&iv_load_policy=3" 
+                    src="https://www.youtube.com/embed/zrQntyEiRkE?rel=0&modestbranding=1&iv_load_policy=3" 
                     title="YouTube video player" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -934,9 +934,19 @@
     const slides = document.querySelectorAll('.slide');
     const totalSlides = slides.length;
 
-    function updateSlider() {
+    function updateSlider(instant = false) {
+        if (instant) {
+            slider.style.transition = 'none';
+        }
+        
         // Move the slider using transform
         slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        
+        if (instant) {
+            // Force reflow to apply transition-none immediately
+            slider.offsetHeight;
+            slider.style.transition = 'transform 0.5s ease-in-out';
+        }
         
         // Update Buttons
         prevBtn.disabled = currentIndex === 0;
@@ -946,13 +956,13 @@
         pageCounter.innerText = `Page ${currentIndex + 1} / ${totalSlides}`;
     }
 
-    function goToSlideFromHash() {
+    function goToSlideFromHash(instant = false) {
         const hash = window.location.hash;
         if (hash && hash.startsWith('#slide-')) {
             const slideNum = parseInt(hash.replace('#slide-', ''));
             if (!isNaN(slideNum) && slideNum >= 1 && slideNum <= totalSlides) {
                 currentIndex = slideNum - 1;
-                updateSlider();
+                updateSlider(instant);
             }
         }
     }
@@ -979,13 +989,13 @@
         }
     });
 
-    window.addEventListener('hashchange', goToSlideFromHash);
+    window.addEventListener('hashchange', () => goToSlideFromHash(false));
 
     // Initialize
     if (window.location.hash) {
-        goToSlideFromHash();
+        goToSlideFromHash(true);
     } else {
-        updateSlider();
+        updateSlider(true);
     }
 
     // ========================================
